@@ -1,17 +1,29 @@
 #include <iostream>
-#include "Point.h"
+#include <vector>
+#include "Point2D.h"
 using namespace std;
 
+Point2D calculateCentroid(vector<Point2D> &pVec)
+{
+    Point2D centroid(0,0);
+
+    for (size_t i = 0; i < pVec.size(); i++) {
+      centroid = centroid + pVec[i];
+    }
+
+    centroid = centroid / pVec.size();
+    return centroid;
+}
+
 int main() {
-  Point point1(1,2);
-  Point point2(5,5);
-  Point point3(27,2);
+  Point2D p0(0,0);
+  Point2D p1(0,1);
+  Point2D p2(1,0);
+  Point2D p3(1,5);
 
-  point1.printPoint();
-  point2.printPoint();
-
-  cout << point1.distanceToOtherPoint(point2) << endl;
-
+  vector<Point2D> pointVector = {p0, p1, p2, p3};
+  Point2D centroid = calculateCentroid(pointVector);
+  centroid.printPoint();
 
   return 0;
 }
