@@ -1,24 +1,25 @@
-#ifndef POINT2D_H
-#define POINT2D_H
+#ifndef Point2D_H
+#define Point2D_H
 
-class Point2D{
-private:
-    float _x;
-    float _y;
+class Point2D {
+    public:
+        Point2D();
 
-public:
-  Point2D();
-  Point2D(float x, float y);
+        Point2D(float, float);
 
-  void SetPoint(float x, float y);
+        Point2D operator+(Point2D& p2);
 
-  float getX();
-  float getY();
-  void printPoint();
-  float distanceToOtherPoint(Point2D otherPoint);
+        Point2D operator/(float f);
 
-  Point2D operator+(Point2D& p2);
-  Point2D operator/(float f);
+        float getX();
+        float getY();
+
+        void print();
+
+        float getDistance(Point2D);
+
+    private:
+        float _x;
+        float _y;
 };
-
 #endif

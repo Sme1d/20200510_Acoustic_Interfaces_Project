@@ -1,29 +1,47 @@
+/*
+# This implements a k-means clustering algorithm as described on:
+# https://en.wikipedia.org/wiki/K-means_clustering
+
+# You are free to use, change, or redistribute the code in any way you wish for
+# any purposes.
+
+*/
+
 #include <iostream>
 #include <vector>
 #include "Point2D.h"
+#include "KMeans.h"
+#include "PointND.h"
 using namespace std;
 
-Point2D calculateCentroid(vector<Point2D> &pVec)
-{
-    Point2D centroid(0,0);
+int main(){
+    vector<float> v1 =  {0.0,0.0};
+    vector<float> v2 = {0.0,1.0};
+    vector<float> v3 = {0.7,0.1};
+    vector<float> v4 = {1.0,0.0};
+    vector<float> v5 = {0.3,1.3};
+    vector<float> v6 = {1.0,1.0};
 
-    for (size_t i = 0; i < pVec.size(); i++) {
-      centroid = centroid + pVec[i];
+    PointND pn1(v1);
+    PointND pn2(v2);
+    cout << pn2.getDistance(pn1) << endl;
+
+
+    vector<PointND> pointVector = {v1, v2, v3, v4, v5, v6};
+
+    KMeans clusterer(2, pointVector);
+
+    clusterer.cluster(4);
+
+    cout<< "centroid 0: ";
+    clusterer.getCentroid(0).print();
+    cout<< "centroid 1: ";
+    clusterer.getCentroid(1).print();
+
+    for (int i=0; i<pointVector.size();i++){
+        cout<< "class: " << clusterer.getClassLabel(i) << " point: ";
+        pointVector[i].print();
     }
 
-    centroid = centroid / pVec.size();
-    return centroid;
-}
-
-int main() {
-  Point2D p0(0,0);
-  Point2D p1(0,1);
-  Point2D p2(1,0);
-  Point2D p3(1,5);
-
-  vector<Point2D> pointVector = {p0, p1, p2, p3};
-  Point2D centroid = calculateCentroid(pointVector);
-  centroid.printPoint();
-
-  return 0;
+    return 0;
 }

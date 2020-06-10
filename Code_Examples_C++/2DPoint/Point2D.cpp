@@ -1,12 +1,16 @@
 #include "Point2D.h"
-#include <iostream>
 #include <cmath>
+#include <iostream>
 using namespace std;
 
-
-// Point constructor
 Point2D::Point2D(){
-    SetPoint(0.0, 0.0);
+  _x = 0.0;
+  _y = 0.0;
+}
+
+Point2D::Point2D(float newX, float newY){
+  _x = newX;
+  _y = newY;
 }
 
 float Point2D:: getY(){
@@ -17,39 +21,25 @@ float Point2D:: getX(){
   return _x;
 }
 
-Point2D::Point2D(float x, float y){
-    SetPoint(x, y);
+void Point2D:: print(){
+  cout << "(" << getX() << ", " << getY()<< ")" << endl;
 }
 
-// Point member function
-void Point2D::SetPoint(float x, float y){
-    _x = x;
-    _y = y;
-}
-
-void Point2D::printPoint(){
-  cout << "(" << _x << "/" << _y << ")" << endl;
+float Point2D::getDistance(Point2D otherPoint){
+  float distance = sqrt(pow((getY() - otherPoint.getY()),2)+pow((getX()- otherPoint.getX()),2));
+  return distance;
 }
 
 Point2D Point2D::operator+(Point2D &p2){
-  float newX = getX() + p2.getX();
-  float newY = getY() + p2.getY();
-  Point2D result = Point2D(newX,newY);
-
-  return result;
+    float y = _y + p2.getY();
+    float x = _x + p2.getX();
+    Point2D res = Point2D(x,y);
+    return res;
 }
 
 Point2D Point2D::operator/(float f){
-  float newX = getX() / f;
-  float newY = getY() / f;
-  Point2D result = Point2D(newX, newY);
-
-  return result;
-}
-
-float Point2D::distanceToOtherPoint(Point2D otherPoint){
-  float xDistance = abs(getX() - otherPoint.getX());
-  float yDistance = abs(getY() - otherPoint.getY());
-  float distance = sqrt(pow(xDistance,2)+pow(yDistance,2));
-  return distance;
+    float y = _y / f;
+    float x = _x / f;
+    Point2D res = Point2D(x,y);
+    return res;
 }
