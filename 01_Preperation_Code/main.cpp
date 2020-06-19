@@ -1,10 +1,8 @@
 /*
 # This implements a k-means clustering algorithm as described on:
 # https://en.wikipedia.org/wiki/K-means_clustering
-
 # You are free to use, change, or redistribute the code in any way you wish for
 # any purposes.
-
 */
 
 #include <iostream>
